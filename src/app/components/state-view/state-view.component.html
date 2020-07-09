@@ -1,0 +1,9 @@
+<app-grid
+    [gridView]="stateView | async"
+    [pageable]="true"
+    [columns]="displayedColumnsSetting"
+    [viewState]="state"
+    [loading]="stateView.loading"
+    [serverSideFilterPaginationEnabled]="true"
+    (dataStateChanged)="onDataStateChanged($event)"
+></app-grid>

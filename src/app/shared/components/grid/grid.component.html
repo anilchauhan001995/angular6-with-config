@@ -1,0 +1,49 @@
+<kendo-grid
+  [columnMenu]="showColumnMenu"
+  [data]="gridView"
+  [kendoGridSelectBy]="mySelectionKey"
+  [pageSize]="pageSize"
+  [skip]="getState().skip"
+  [sort]="getState().sort"
+  [filter]="getState().filter"
+  [pageable]="pageable"
+  (pageChange)="onPageChange($event)"
+  [sortable]="sortable"
+  [filterable]="filterable"
+  [selectable]="selectable"
+  [loading]="loading"
+  (selectionChange)="selectRow($event)"
+  (cellClick)="cellClickHandler($event)"
+  (cellClose)="cellCloseHandler($event)"
+  (dataStateChange)="dataStateChange($event)"
+  (dblclick)="doubleClick($event)"
+  [scrollable]="scrollable"
+  [height]="height"
+  [loading]="loading"
+  [selectedKeys]="selectedKeys"
+  [rowClass]="getRowClass()"
+  (selectedKeysChange)="onSelectedKeysChange($event)">
+
+  <kendo-grid-column *ngFor="let cols of columns" [field]="cols.field">
+    <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+      {{cols.title}}
+    </ng-template>
+</kendo-grid-column>
+
+
+
+<ng-template kendoPagerTemplate let-totalPages="totalPages" let-currentPage="currentPage" let-pageSize="pageSize">
+  <kendo-pager-prev-buttons></kendo-pager-prev-buttons>
+  <kendo-pager-numeric-buttons [buttonCount]="10"></kendo-pager-numeric-buttons>
+  <kendo-pager-next-buttons></kendo-pager-next-buttons>
+  <kendo-pager-page-sizes [pageSizes]="PAGE_SIZES"></kendo-pager-page-sizes>
+  <kendo-pager-info></kendo-pager-info>
+</ng-template>
+<ng-template kendoGridToolbarTemplate position="bottom">
+  <ng-content></ng-content>
+</ng-template>
+<ng-template kendoGridNoRecordsTemplate>
+No Record 
+</ng-template>
+
+</kendo-grid>
